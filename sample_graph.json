@@ -1,0 +1,25 @@
+{
+	"nodes": [
+		{
+			"id": 1,
+			"type" : "song",
+			"artist" : "Bob Marley",
+			"title" : "No Woman no Cry",
+			"year" : 1975
+		},
+		{
+			"id": 2,
+			"type" : "song",
+			"artist" : "Bob Marley",
+			"title" : "Buffalo Soldier",
+			"year" : 1976
+		}
+	],
+	"edges": [
+		{
+			"source" : 1,
+			"target" : 2,
+			"caption" : "SIMILAR"
+		}
+	]
+}

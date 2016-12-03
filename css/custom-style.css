@@ -1,0 +1,13 @@
+.tagCloud__image{
+	width: 100%;
+}
+
+.big-link{
+	font-size: 30px;
+	color: white;
+	text-decoration: underline;
+}
+
+.big-link:hover{
+	color: white;
+}

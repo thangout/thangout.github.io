@@ -1,105 +1,374 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<title>D3 Test</title>
-<script type="text/javascript" src="d3/d3.min.js"></script>
-</head>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+		<!-- BASICS -->
+        <meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>The Song Network - Social graphs and Interactions</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" type="text/css" href="css/isotope.css" media="screen" />	
+		<link rel="stylesheet" href="js/fancybox/jquery.fancybox.css" type="text/css" media="screen" />
+		<link rel="stylesheet" href="http://cdn.graphalchemist.com/alchemy.min.css">
+		<link rel="stylesheet" href="css/bootstrap.css">
+		<link rel="stylesheet" href="css/bootstrap-theme.css">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/custom-style.css">
+		<!-- skin -->
+		<link rel="stylesheet" href="skin/default.css">
+		<script src="js/jquery.js"></script>
+    </head>
+	 
+    <body>
+		<section id="header" class="appear"></section>
+		<div class="navbar navbar-fixed-top" role="navigation" data-0="line-height:100px; height:100px; background-color:rgba(0,0,0,0.3);" data-300="line-height:60px; height:60px; background-color:rgba(0,0,0,1);">
+			 <div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+						<span class="fa fa-bars color-white"></span>
+					</button>
+					<h1><a class="navbar-brand" href="index.html" data-0="line-height:90px;" data-300="line-height:50px;">
+						<i class="fa fa-caret-square-o-right"></i> The Song Network
+					</a></h1>
+				</div>
+				<div class="navbar-collapse collapse">
+					<ul class="nav navbar-nav" data-0="margin-top:20px;" data-300="margin-top:5px;">
+						<li class="active"><a href="#header">Facts</a></li>
+						<li><a href="#section-explore">Explore</a></li>
+						<li><a href="#section-tags-similarity">Tags &amp; Similarity</a></li>
+						<li><a href="#section-works">Language</a></li>
+					</ul>
+				</div><!--/.navbar-collapse -->
+			</div>
+		</div>
 
-<body>
-	<h1>Velkommen</h1>
+		<section class="featured">
+			<div class="container"> 
+				<div class="row mar-bot40">
+					<div class="col-md-6 col-md-offset-3">
+						<div class="align-center">
+							<i class="fa fa-music fa-5x mar-bot20"></i>
+							<h2 class="slogan">Introducing the Song Network</h2>
+							<p>
+							Welcome stranger! Prepare to dive into the world of songs, similar songs, and similar songs of similar 
+							songs of songs that share the same tags and use the same words. Based on the 
+							<a href="#" style="color:#fff;text-decoration:underline;text-decoration-style: dotted;">Million Song Dataset</a> 
+							we created a network of songs, tags and words that tells a thousand stories about songs without a single sound.
+							</p>	
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		<!-- services -->
+		<section id="section-explore" class="section pad-bot30 bg-white">
+		<div class="container"> 
+		
+			<div class="row mar-bot40">
+				<div class="col-lg-4" >
+					<div class="align-center">
+						<span class="text-bold fact-number">95224</span>
+						<h4 class="text-bold mar-top10 mar-bot30">Songs</h4>
+						<p>
+						Songs have properties like artist, title and release year. They can have a similarity relationship
+						between each other, which holds a score indicating how similar two songs are, if at all. Around a third of
+						all songs have full information about tags, words, year, artist and title.
+						</p>
+					</div>
+				</div>
+					
+				<div class="col-lg-4" >
+					<div class="align-center">
+						<span class="text-bold fact-number">106246</span>
+						<h4 class="text-bold mar-top10 mar-bot30">Tags</h4>
+						<p>
+						Tags are user defined phrases that describe a song. These might be a genre like "rock" or descriptions
+						of something, the tagged songs may have in common like "sad" or "title is a full sentence".
+						</p>
+					</div>
+				</div>
+			
+				<div class="col-lg-4" >
+					<div class="align-center">
+						<span class="text-bold fact-number">5000</span>
+						<h4 class="text-bold mar-top10 mar-bot30">Words</h4>
+						<p>
+						We are taking a network-based bag of words approach. Our database contains the 5000 most common words across
+						the songs where lyrics are available. A song is connected to a word with the "contains" relationship that also
+						holds the number of times the word occurs in that song.
+						</p>
+					</div>
+				</div>
+			</div>	
+		</div>
+		</section>
+			
+		<!-- about -->
+		<section id="section-tags-similarity" class="section appear clearfix">
+			<div class="container">
+				<div class="row">
+					<h2 class="text-center">Tags &amp; Similarity</h2>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<img class="tagCloud__image" src="img/distributions_merged.png" alt="" />
+					</div>
+					<div class="col-md-12">
+						<h2 class="align-center">The graph song</h2>
+						<p class="align-center">The graph below shows the connection between each datasets.</p>
+						<img class="tagCloud__image" src="img/graph.png" alt="" />
+					</div>
+					<div class="col-md-12">
+						<h2 class="align-center">Year distribution of the songs</h2>
+						<p class="align-center">Looking at the year distribution graph the most songs </p>
+						<img class="tagCloud__image" src="img/year_distribution.png" alt="" />
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- /about -->
 
-	<script type="text/javascript">
-		//d3.select("body").append("p").text("New paragraph!");
+		<!-- word clouds -->
+		<section id="section-explore" class="section pad-bot30 bg-white">
+			<div class="container"> 
+				<div class="row">
+					<div class="col-md-12">
+						<div class="section-header">
+							<h2 class="text-center section-heading">Word Clouds</h2>
+						</div>
+						<div class="align-center">
+							<p>Diving into lyrics. The key words for each tags were extracted and then masked into wordclouds.</p>
+						</div>
+					</div>	
+				</div>
+				<div class="row mar-bot40">
+					<div class="col-md-6" >
+						<h3 class="text-center">Death metal</h3>
+						<img class="tagCloud__image" src="img/wordclouds/1.png" alt="" />
+					</div>
+						
+					<div class="col-md-6" >
+						<h3 class="text-center">Rap</h3>
+						<img class="tagCloud__image" src="img/wordclouds/2.png" alt="" />
+					</div>
+				</div>	
+				<div class="row">
+					<div class="col-md-6" >
+						<h3 class="text-center">Politics</h3>
+						<img class="tagCloud__image" src="img/wordclouds/3.png" alt="" />
+					</div>	
+					
+					<div class="col-md-6" >
+						<h3 class="text-center">Country</h3>
+						<img class="tagCloud__image" src="img/wordclouds/4.png" alt="" />
+					</div>	
+				</div>	
+			</div>
+		</section>	
 
-		d3.csv("data/food.csv", function(data){
-			//console.log(data)
-		});
+		<!-- spacer section:stats -->
+		<section id="parallax1" class="section pad-top40 pad-bot40" data-stellar-background-ratio="0.5">
+			<div class="container">
+	            <div class="align-center pad-top40 pad-bot40">
+	                <blockquote class="bigquote color-white">Complete list of TAGs</blockquote>
+					<p class="color-white"><a  class="big-link" href="img/sentiment.jpg">See the whole tag list</a></p>
+	            </div>
+			</div>	
+		</section>
+		
+		<!-- section works -->
+		<section id="section-works" class="section appear clearfix">
+			<div class="container">
+				
+				<div class="row mar-bot40">
+					<div class="col-md-offset-3 col-md-6">
+						<div class="section-header">
+							<h2 class="section-heading animated" data-animation="bounceInUp">Sentiment per years</h2>
+							<p>Investigation of the average sentiment per each year from 1928 to 2011</p>
+							<!-- <img src="img/link-to-image"> -->
+						</div>
+					</div>
+				</div>
+					
+<!--                         <div class="row">
+                          <nav id="filter" class="col-md-12 text-center">
+                            <ul>
+                              <li><a href="#" class="current btn-theme btn-small" data-filter="*">All</a></li>
+                              <li><a href="#"  class="btn-theme btn-small" data-filter=".webdesign" >Web Design</a></li>
+                              <li><a href="#"  class="btn-theme btn-small" data-filter=".photography">Photography</a></li>
+                              <li ><a href="#" class="btn-theme btn-small" data-filter=".print">Print</a></li>
+                            </ul>
+                          </nav>
+                          <div class="col-md-12">
+                            <div class="row">
+                              <div class="portfolio-items isotopeWrapper clearfix" id="3">
+							  
+                                <article class="col-md-4 isotopeItem webdesign">
+									<div class="portfolio-item">
+										<img src="img/portfolio/img1.jpg" alt="" />
+										 <div class="portfolio-desc align-center">
+											<div class="folio-info">
+												<h5><a href="#">Portfolio name</a></h5>
+												<a href="img/portfolio/img1.jpg" class="fancybox"><i class="fa fa-plus fa-2x"></i></a>
+											 </div>										   
+										 </div>
+									</div>
+                                </article>
 
-		var dataset = [ 5, 10, 13, 19, 21, 25, 22, 18, 15, 13,
-						11, 12, 15, 20, 18, 17, 16, 18, 23, 25 ];
+                                <article class="col-md-4 isotopeItem photography">
+									<div class="portfolio-item">
+										<img src="img/portfolio/img2.jpg" alt="" />
+										 <div class="portfolio-desc align-center">
+											<div class="folio-info">
+												<h5><a href="#">Portfolio name</a></h5>
+												<a href="img/portfolio/img2.jpg" class="fancybox"><i class="fa fa-plus fa-2x"></i></a>
+											 </div>										   
+										 </div>
+									</div>
+                                </article>
+								
 
-		/* Text append, the function of enter() method 
-		d3.select("body").selectAll("p")
-			.data(dataset)
-			.enter()
-			.append("p")
-			.text(function(d) { return d; })
-			.style("color", function(d) {
-				if (d > 15) { //Threshold of 15
-					return "red";
-				} else {
-					return "blue";
-				}
-				});
-		*/
+                                <article class="col-md-4 isotopeItem photography">
+									<div class="portfolio-item">
+										<img src="img/portfolio/img3.jpg" alt="" />
+										 <div class="portfolio-desc align-center">
+											<div class="folio-info">
+												<h5><a href="#">Portfolio name</a></h5>
+												<a href="img/portfolio/img3.jpg" class="fancybox"><i class="fa fa-plus fa-2x"></i></a>
+											 </div>										   
+										 </div>
+									</div>
+                                </article>
 
-		var w = 500;
-		var h = 100;
+                                <article class="col-md-4 isotopeItem print">
+									<div class="portfolio-item">
+										<img src="img/portfolio/img4.jpg" alt="" />
+										 <div class="portfolio-desc align-center">
+											<div class="folio-info">
+												<h5><a href="#">Portfolio name</a></h5>
+												<a href="img/wordclouds/4.jpg" class="fancybox"><i class="fa fa-plus fa-2x"></i></a>
+											 </div>										   
+										 </div>
+									</div>
+                                </article>
+                                </div>
+                                        
+							</div>
+                                     
 
-		var svg = d3.select("body")
-					.append("svg")
-					.attr("width", w) // <-- Here
-					.attr("height", h); // <-- and here!
+							</div>
+                        </div>
+	 -->			
+			</div>
+		</section>
+		<section id="parallax2" class="section parallax" data-stellar-background-ratio="0.5">	
+            <div class="align-center pad-top40 pad-bot40">
+                <blockquote class="bigquote color-white">How similar are songs with the same TAG?</blockquote>
+				<p class="color-white">Bootstraptaste</p>
+            </div>
+		</section>
 
-		//draw circes
-		/*
-		var circles = svg.selectAll("circle")
-			.data(dataset)
-			.enter()
-			.append("circle");
+		<!-- contact 
+		<section id="section-contact" class="section appear clearfix">
+			<div class="container">
+				
+				<div class="row mar-bot40">
+					<div class="col-md-offset-3 col-md-6">
+						<div class="section-header">
+							<h2 class="section-heading animated" data-animation="bounceInUp">Contact us</h2>
+							<p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet consectetur, adipisci velit, sed quia non numquam.</p>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-8 col-md-offset-2">
+						<div class="cform" id="contact-form">
+							<div id="sendmessage">
+								 Your message has been sent. Thank you!
+							</div>
+                            <div id="errormessage"></div>
+							<form action="" method="post" role="form" class="contactForm">
+							  <div class="form-group">
+								<label for="name">Your Name</label>
+								<input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+								<div class="validation"></div>
+							  </div>
+							  <div class="form-group">
+								<label for="email">Your Email</label>
+								<input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
+								<div class="validation"></div>
+							  </div>
+							  <div class="form-group">
+								<label for="subject">Subject</label>
+								<input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+								<div class="validation"></div>
+							  </div>
+							  <div class="form-group">
+								<label for="message">Message</label>
+								<textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us"></textarea>
+								<div class="validation"></div>
+							  </div>
+							  
+							  <button type="submit" class="btn btn-theme pull-left">SEND MESSAGE</button>
+							</form>
 
-		circles.attr("cx", function(d, i) {
-			return (i * 50) + 25; 
-			})
-			.attr('color','green')
-			.attr("cy", h/2)
-			.attr("r", function(d) {
-			return d;
-			});
-		*/
-		var barWidth = 20;
-		var barGap = 1;
-		var magnifier = 3
-		var textRelPositionY = 13;
-		var textRelPositionX = 4;
+						</div>
+					</div>
+					<!-- ./span12 --><!--
+				</div>
+				
+			</div>
+		</section> -->
 
-		var rects = svg.selectAll("rect")
-			.data(dataset)
-			.enter()
-			.append("rect")
-			.attr("x", function(d,i){
-				return i * (w / dataset.length);
-			})
-			.attr("y", function(d){
-				return h - d*magnifier;
-			})
-			.attr("width", barWidth)
-			.attr("height", function(d){
-				return d*magnifier;	
-			})
-			.attr("fill", function(d) {
-				return "rgb("+d*4+","+d*20+", " + (d * 10) + ")";
-			});
+		
+	<section id="footer" class="section footer">
+		<div class="container">
+			<div class="row animated opacity mar-bot20" data-andown="fadeIn" data-animation="animation">
+				<div class="col-sm-12 align-center">
+                    <ul class="social-network social-circle">
+                        <li><a href="#" class="icoRss" title="Rss"><i class="fa fa-rss"></i></a></li>
+                        <li><a href="#" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#" class="icoTwitter" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#" class="icoGoogle" title="Google +"><i class="fa fa-google-plus"></i></a></li>
+                        <li><a href="#" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
+                    </ul>				
+				</div>
+			</div>
 
-			svg.selectAll('text')
-			.data(dataset)
-			.enter()
-			.append('text')
-			.text(function(d) {
-				return d;
-			})	
-			.attr("x", function(d,i){
-				return i * (w / dataset.length) + textRelPositionX;
-			})
-			.attr("y", function(d){
-				return h - d*magnifier + textRelPositionY;
-			})
-			.attr("font-family", "sans-serif")
-			.attr("font-size", "11px")
-			.attr("fill", "black");
+			<div class="row align-center copyright">
+					<div class="col-sm-12"><p>Copyright &copy; Amoeba</p>
+                        <div class="credits">
+                            <!-- 
+                                All the links in the footer should remain intact. 
+                                You can delete the links only if you purchased the pro version.
+                                Licensing information: https://bootstrapmade.com/license/
+                                Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Amoeba
+                            -->
+                            <a href="https://bootstrapmade.com/">Bootstrap Themes</a> by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+                        </div>
+                    </div>
+			</div>
+		</div>
 
-	</script>
+	</section>
+	<a href="#header" class="scrollup"><i class="fa fa-chevron-up"></i></a>	
 
+	<script src="js/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+	<script src="js/jquery.easing.1.3.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+	<script src="https://maps.google.com/maps/api/js?sensor=true"></script>
+	<script src="js/jquery.isotope.min.js"></script>
+	<script src="js/jquery.nicescroll.min.js"></script>
+	<script src="js/fancybox/jquery.fancybox.pack.js"></script>
+	<script src="js/skrollr.min.js"></script>		
+	<script src="js/jquery.scrollTo-1.4.3.1-min.js"></script>
+	<script src="js/jquery.localscroll-1.2.7-min.js"></script>
+	<script src="js/stellar.js"></script>
+	<script src="js/jquery.appear.js"></script>
+    <script src="js/main.js"></script>
+	<script type="text/javascript" src="http://cdn.graphalchemist.com/alchemy.0.2.min.js"></script>
 	</body>
 </html>
