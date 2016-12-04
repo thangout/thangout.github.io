@@ -19,6 +19,7 @@
 		<!-- skin -->
 		<link rel="stylesheet" href="skin/default.css">
 		<script src="js/jquery.js"></script>
+		<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     </head>
 	 
     <body>
@@ -124,7 +125,13 @@
 					<div class="col-md-12">
 						<h2 class="align-center">Year distribution of the songs</h2>
 						<p class="align-center">Looking at the year distribution graph the most songs </p>
-						<img class="tagCloud__image" src="img/year_distribution.png" alt="" />
+						<div id="js-yearDistribution"><!-- Graph is here --></div>
+						<!-- <img class="tagCloud__image" src="img/year_distribution.png" alt="" /> -->
+					</div>
+					<div class="col-md-12">
+						<h2 class="align-center" style="padding-top: 40px;">10 most popular Tags</h2>
+						<!-- <p class="align-center">Looking at the year distribution graph the most songs </p> -->
+						<div id="js-popularTags"><!-- Graph is here --></div>
 					</div>
 				</div>
 			</div>
@@ -369,6 +376,8 @@
 	<script src="js/stellar.js"></script>
 	<script src="js/jquery.appear.js"></script>
     <script src="js/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+	<script src="js/plots/plots.js"></script>
 	<!-- <script type="text/javascript" src="http://cdn.graphalchemist.com/alchemy.0.2.min.js"></script> -->
 	</body>
 </html>
