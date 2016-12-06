@@ -1,218 +1,144 @@
-/*
-//Constants for the SVG
-var width = 500,
-    height = 500;
+var w = 1000;
+    var h = 600;
+    var linkDistance=350;
 
-//Set up the colour scale
-var color = d3.scale.category20();
+    var colors = d3.scale.category10();
 
-//Set up the force layout
-var force = d3.layout.force()
-    .charge(-120)
-    .linkDistance(120)
-    .size([width, height]);
+    var dataset = {
 
-//Append a SVG to the body of the html page. Assign this SVG as an object to svg
-var svg = d3.select(".js-forceGraph").append("svg")
-    .attr("width", width)
-    .attr("height", height);
+    nodes: [
+    {name: "Song", group:1},
+    {name: "Song", group: 1},
+    {name: "Word", group: 2},
+    {name: "Tag", group:3},
+   
+    ],
+    edges: [
+    {source: 0, target: 1,label:"similar, score: 0.8"},
+    {source: 1, target: 2,label:"contains, count: 4"},
+    {source: 0, target: 3,label:"tagged, score: 59"},
+    ]
+    };
 
-// data = {nodes:[{name:"Song",group: 1},{name:"Song",group:1},{name:"Word",group:2},{name:"Tag", group:3}],
-//     links:[{source:0,target:1},{source:1,target:2},{source:0,target:3}]}
-data = {nodes:[{name:"Song",group: 1},{name:"Song",group:2}], links:[{source:0,target:1,value:1}]}
-graph = data; 
+ 
+    var svg = d3.select(".js-forceGraph").append("svg").attr({"width":w,"height":h});
 
-//Creates the graph data structure out of the json data
-force.nodes(graph.nodes)
-    .links(graph.links)
-    .start();
-
-//Create all the line svgs but without locations yet
-var link = svg.selectAll(".link")
-    .data(graph.links)
-    .enter().append("line")
-    .attr("class", "link")
-    .style("marker-end",  "url(#suit)") //Added 
-    ;
-
-//Do the same with the circles for the nodes - no 
-var node = svg.selectAll(".node")
-    .data(graph.nodes)
-    .enter().append("g")
-    .attr("class", "node")
-    .call(force.drag);
-
-node.append("circle")
-    .attr("r", 20)
-    .style("fill", function (d) {
-    return color(d.group);
-})
-
-node.append("text")
-      .attr("dx", 10)
-      .attr("dy", ".35em")
-      .attr("stroke", "black")
-      .text(function(d) { return d.name });
-
-
-
-//Now we are giving the SVGs co-ordinates - the force layout is generating the co-ordinates which this code is using to update the attributes of the SVG elements
-force.on("tick", function () {
-    link.attr("x1", function (d) {
-        return d.source.x;
-    })
-        .attr("y1", function (d) {
-        return d.source.y;
-    })
-        .attr("x2", function (d) {
-        return d.target.x;
-    })
-        .attr("y2", function (d) {
-        return d.target.y;
-    });
-
-    //Changed
+    var force = d3.layout.force()
+        .nodes(dataset.nodes)
+        .links(dataset.edges)
+        .size([w,h])
+        .linkDistance([linkDistance])
+        .charge([-500])
+        .theta(0.1)
+        .gravity(0.05)
+        .start();
+ 
+    var edges = svg.selectAll("line")
+      .data(dataset.edges)
+      .enter()
+      .append("line")
+      .attr("id",function(d,i) {return 'edge'+i})
+      .attr('marker-end','url(#arrowhead)')
+      .style("stroke","#ccc")
+      .style("pointer-events", "none");
     
-    d3.selectAll("circle").attr("cx", function (d) {
-        return d.x;
-    })
-        .attr("cy", function (d) {
-        return d.y;
-    });
-
-    d3.selectAll("text").attr("x", function (d) {
-        return d.x;
-    })
-        .attr("y", function (d) {
-        return d.y;
-    });
-
-    //End Changed
-
-});
-
-//---Insert-------
-svg.append("defs").selectAll("marker")
-    .data(["suit", "licensing", "resolved"])
-  .enter().append("marker")
-    .attr("id", function(d) { return d; })
-    .attr("viewBox", "0 -5 10 10")
-    .attr("refX", 25)
-    .attr("refY", 0)
-    .attr("markerWidth", 6)
-    .attr("markerHeight", 6)
-    .attr("orient", "auto")
-  .append("path")
-    .attr("d", "M0,-5L10,0L0,5 L10,0 L0, -5")
-    .style("stroke", "#4679BD")
-    .style("opacity", "0.6");
-//---End Insert---
-*/
-
-//Constants for the SVG
-var width = 500,
-    height = 500;
-
-//Set up the colour scale
-var color = d3.scale.category20();
-
-//Set up the force layout
-var force = d3.layout.force()
-    .charge(-120)
-    .linkDistance(80)
-    .size([width, height]);
-
-//Append a SVG to the body of the html page. Assign this SVG as an object to svg
-var svg = d3.select(".js-forceGraph").append("svg")
-    .attr("width", width)
-    .attr("height", height);
+    var nodes = svg.selectAll("circle")
+      .data(dataset.nodes)
+      .enter()
+      .append("circle")
+      .attr({"r":50})
+      .style("fill",function(d,i){return colors(d.group);})
+      .call(force.drag)
 
 
+    var nodelabels = svg.selectAll(".nodelabel") 
+       .data(dataset.nodes)
+       .enter()
+       .append("text")
+       .attr({"x":function(d){return d.x;},
+              "y":function(d){return d.y;},
+              "class":"nodelabel",
+              "font-size":20,
+              "stroke":"black"})
+       .text(function(d){return d.name;});
 
-//Read the data from the mis element 
-data = {nodes:[{name:"Song",group: 1},{name:"Song",group:1},{name:"Word",group:2},{name:"Tag", group:3}],
-    links:[{source:0,target:1},{source:1,target:2},{source:0,target:3}]}
-graph = data; 
+    var edgepaths = svg.selectAll(".edgepath")
+        .data(dataset.edges)
+        .enter()
+        .append('path')
+        .attr({'d': function(d) {return 'M '+d.source.x+' '+d.source.y+' L '+ d.target.x +' '+d.target.y},
+               'class':'edgepath',
+               'fill-opacity':0,
+               'stroke-opacity':0,
+               'fill':'blue',
+               'stroke':'red',
+               'id':function(d,i) {return 'edgepath'+i}})
+        .style("pointer-events", "none");
 
-//Creates the graph data structure out of the json data
-force.nodes(graph.nodes)
-    .links(graph.links)
-    .start();
+    var edgelabels = svg.selectAll(".edgelabel")
+        .data(dataset.edges)
+        .enter()
+        .append('text')
+        .style("pointer-events", "none")
+        .attr({'class':'edgelabel',
+               'id':function(d,i){return 'edgelabel' + i},
+               'dx':100,
+               'dy':0,
+               'font-size':20,
+               'fill':'#333'});
 
-//Create all the line svgs but without locations yet
-var link = svg.selectAll(".link")
-    .data(graph.links)
-    .enter().append("line")
-    .attr("class", "link")
-    .style("marker-end",  "url(#suit)") //Added 
-    ;
-
-//Do the same with the circles for the nodes - no 
-var node = svg.selectAll(".node")
-      .data(graph.nodes)
-      .enter().append("g")
-      .attr("class", "node")
-      .call(force.drag);
-
-    node.append("circle")
-      .attr("r", 8)
-      .style("fill", function(d) {
-        return color(d.group);
-      })
-
-    node.append("text")
-      .attr("dx", 10)
-      .attr("dy", ".35em")
-      .attr("stroke","black")
-      .text(function(d) {
-        return d.name 
-      });
+    edgelabels.append('textPath')
+        .attr('xlink:href',function(d,i) {return '#edgepath'+i})
+        .style("pointer-events", "none")
+        .text(function(d,i){return d.label});
 
 
-//Now we are giving the SVGs co-ordinates - the force layout is generating the co-ordinates which this code is using to update the attributes of the SVG elements
-force.on("tick", function () {
-    link.attr("x1", function (d) {
-        return d.source.x;
-    })
-        .attr("y1", function (d) {
-        return d.source.y;
-    })
-        .attr("x2", function (d) {
-        return d.target.x;
-    })
-        .attr("y2", function (d) {
-        return d.target.y;
-    });
+    svg.append('defs').append('marker')
+        .attr({'id':'arrowhead',
+               'viewBox':'-0 -5 10 10',
+               'refX':45,
+               'refY':0,
+               //'markerUnits':'strokeWidth',
+               'orient':'auto',
+               'markerWidth':15,
+               'markerHeight':15,
+               'xoverflow':'visible'})
+        .append('svg:path')
+            .attr('d', 'M 0,-5 L 10 ,0 L 0,5')
+            .attr('fill', '#ccc')
+            .attr('stroke','#ccc');
+     
 
-   d3.selectAll("circle").attr("cx", function(d) {
-          return d.x;
-        })
-        .attr("cy", function(d) {
-          return d.y;
+    force.on("tick", function(){
+
+        edges.attr({"x1": function(d){return d.source.x;},
+                    "y1": function(d){return d.source.y;},
+                    "x2": function(d){return d.target.x;},
+                    "y2": function(d){return d.target.y;}
         });
 
-      d3.selectAll("text").attr("x", function(d) {
-          return d.x;
-        })
-        .attr("y", function(d) {
-          return d.y;
+        nodes.attr({"cx":function(d){return d.x;},
+                    "cy":function(d){return d.y;}
         });
-});
 
-//---Insert-------
-svg.append("defs").selectAll("marker")
-    .data(["suit", "licensing", "resolved"])
-  .enter().append("marker")
-    .attr("id", function(d) { return d; })
-    .attr("viewBox", "0 -5 10 10")
-    .attr("refX", 25)
-    .attr("refY", 0)
-    .attr("markerWidth", 6)
-    .attr("markerHeight", 6)
-    .attr("orient", "auto")
-  .append("path")
-    .attr("d", "M0,-5L10,0L0,5 L10,0 L0, -5")
-    .style("stroke", "#4679BD")
-    .style("opacity", "0.6");
-//---End Insert---
 
+        nodelabels.attr("x", function(d) { return d.x - 20; }) 
+                  .attr("y", function(d) { return d.y + 3; });
+
+        edgepaths.attr('d', function(d) { var path='M '+d.source.x+' '+d.source.y+' L '+ d.target.x +' '+d.target.y;
+                                           //console.log(d)
+                                           return path});       
+
+        edgelabels.attr('transform',function(d,i){
+            if (d.target.x<d.source.x){
+                bbox = this.getBBox();
+                rx = bbox.x+bbox.width/2;
+                ry = bbox.y+bbox.height/2;
+                return 'rotate(180 '+rx+' '+ry+')';
+                }
+            else {
+                return 'rotate(0)';
+                }
+        });
+
+    });

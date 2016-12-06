@@ -113,8 +113,15 @@
 				<div class="row">
 					<div class="col-md-12">
 						<h2 class="align-center">The graph song</h2>
-						<p class="align-center">The graph below shows the connection between each datasets.</p>
-						<img class="tagCloud__image" src="img/graph.png" alt="" />
+						<p class="align-center">The simple graph below is an example of the relationship between each dataset.</p>
+						<ul class="align-center" style="list-style-type: none">
+							<li>Songs are similar to each other</li>
+							<li>Songs certainly have lyrics</li>
+							<li>Songs are tagged</li>
+						</ul>
+						<!-- <img class="tagCloud__image" src="img/graph.png" alt="" /> -->
+						<div class="js-forceGraph"></div>	
+
 					</div>
 					<div class="col-md-12">
 						<h2 class="text-center">Tags &amp; Similarity</h2>
@@ -122,12 +129,15 @@
 					</div>
 					<div class="col-md-12">
 						<h2 class="align-center">Year distribution of the songs</h2>
-						<p class="align-center">Looking at the year distribution graph the most songs </p>
+						<p class="align-center">Looking at the year distribution graph the most songs are in 2007 </p>
 						<div id="js-yearDistribution"><!-- Graph is here --></div>
 						<!-- <img class="tagCloud__image" src="img/year_distribution.png" alt="" /> -->
 					</div>
 					<div class="col-md-12">
-						<h2 class="align-center" style="padding-top: 40px;">10 most popular Tags</h2>
+						<div class="align-center">
+							<h2 style="padding-top: 40px;">10 most popular Tags</h2>
+							<p>Suprisingly none of tags are crazily bizarre</p>
+						</div>
 						<!-- <p class="align-center">Looking at the year distribution graph the most songs </p> -->
 						<div id="js-popularTags"><!-- Graph is here --></div>
 					</div>
@@ -142,7 +152,7 @@
 				<div class="row">
 					<div class="col-md-12">
 						<div class="section-header">
-							<h2 class="text-center section-heading">Word Clouds</h2>
+							<h2 class="text-center section-heading">Lets have fun with lyrics</h2>
 						</div>
 						<div class="align-center">
 							<p>Diving into lyrics. The key words for each tags were extracted and then masked into wordclouds.</p>
@@ -189,17 +199,12 @@
 		<section id="section-works" class="section appear clearfix">
 			<div class="container">
 					
-	            <div class="row">
-	            	<div class="col-md-12">
-	            		<div class="js-forceGraph"></div>
-	            	</div>
-	            </div>
 
 				<div class="row mar-bot40">
 					<div class="col-md-offset-3 col-md-6">
 						<div class="section-header">
 							<h2 class="section-heading animated" data-animation="bounceInUp">Sentiment per years</h2>
-							<p>Investigation of the average sentiment per each year from 1928 to 2011</p>
+							<p>Investigation of the average sentiment of lyrics per year from 1928 to 2011</p>
 							<!-- <img src="img/link-to-image"> -->
 						</div>
 					</div>
