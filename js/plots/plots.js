@@ -7,19 +7,25 @@ function loadData(){
 	$.getJSON("https://raw.githubusercontent.com/thangout/thangout.github.io/master/data/yearDistribution.json", function(json) {
 		var years =_.values(json.year)
 		var count =_.values(json.count)
-		drawYearDist(years,count);
+		drawScatterGraph(years,count,'Year','Count','js-yearDistribution');
 	});
 
 	$.getJSON("https://raw.githubusercontent.com/thangout/thangout.github.io/master/data/popularTags.json", function(json) {
 		var tags =_.values(json.tag)
 		var count =_.values(json.count)
-		drawPopularTags(tags,count);
+		drawBarGraph(tags,count,'Tag','Count','js-popularTags');
 	});
 
+	$.getJSON("https://raw.githubusercontent.com/thangout/thangout.github.io/master/data/avgSent.json", function(json) {
+		var unzipped = _.unzip(json); 
+		 var years =_.values(unzipped[0])
+		 var sentiment =_.values(unzipped[1])
+		 drawScatterGraph(years,sentiment,'Year','Sentiment','js-yearSentiment');
+	});
 }
 
 //draw bar plot of turbines production
-function drawPopularTags(xVal,yVal){
+function drawBarGraph(xVal,yVal,xTitle,yTitle,where){
 	//Turbine production
 	d3 = Plotly.d3;
 	var data = [
@@ -42,11 +48,11 @@ function drawPopularTags(xVal,yVal){
 		}
 	};
 
-	Plotly.newPlot('js-popularTags', data,layout, {displayModeBar: false});
+	Plotly.newPlot(where, data,layout, {displayModeBar: false});
 }
 
 //draw scatter plot of park Production
-function drawYearDist(xVal,yVal){
+function drawScatterGraph(xVal,yVal,xTitle,yTitle,where){
 	var data = [{
 		x: xVal,
 		y: yVal,
@@ -58,12 +64,12 @@ function drawYearDist(xVal,yVal){
 	showlegend: false,
 	xaxis: {
 	  	//autotick: false,
-		title: 'Year'
+		title: xTitle 
 		},
 	yaxis:{
-		title: 'Count'
+		title: yTitle
 		}
 	};
 
-	Plotly.newPlot('js-yearDistribution', data,layoutPark, {displayModeBar: false});
+	Plotly.newPlot(where, data,layoutPark, {displayModeBar: false});
 }
