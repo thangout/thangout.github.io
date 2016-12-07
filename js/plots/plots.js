@@ -1,5 +1,7 @@
 $(function () {
-	loadData();
+	$(document).ready(function() {
+		loadData();
+	});
 })
 
 
@@ -16,6 +18,7 @@ function loadData(){
 		drawBarGraph(tags,count,'Tag','Count','js-popularTags');
 	});
 
+	
 	$.getJSON("https://raw.githubusercontent.com/thangout/thangout.github.io/master/data/avgSent.json", function(json) {
 		 var unzipped = _.unzip(json); 
 		 var years = unzipped[0];
@@ -25,7 +28,7 @@ function loadData(){
 		 var years2 = unzippedTrace2[0];
 		 var sentiment2 = unzippedTrace2[1];
 
-		 drawDoubleScatterGraph(years,sentiment,years,sentiment2,'Year','Sentiment','js-yearSentiment');
+		 drawDoubleScatterGraph(years,sentiment,years2,sentiment2,'Year','Sentiment','js-yearSentiment');
 	});
 
 	$.getJSON("https://raw.githubusercontent.com/thangout/thangout.github.io/master/data/degreeDist.json", function(json) {
@@ -61,12 +64,13 @@ function drawBarGraph(xVal,yVal,xTitle,yTitle,where){
 		title: xTitle,
 		},
 	yaxis:{
-		title: yTitle 
+		title: yTitle
 		}
 	};
 
 	Plotly.newPlot(where, data,layout, {displayModeBar: false});
 }
+
 
 //draw scatter plot 
 function drawDoubleScatterGraph(xVal,yVal,xVal2,yVal2,xTitle,yTitle,where){
@@ -91,7 +95,7 @@ function drawDoubleScatterGraph(xVal,yVal,xVal2,yVal2,xTitle,yTitle,where){
 	showlegend: true,
 	xaxis: {
 	  	autotick: false,
-		title: xTitle 
+		title: xTitle
 		},
 	yaxis:{
 		title: yTitle
@@ -134,19 +138,28 @@ function drawLogGraph(xVal,yVal,xTitle,yTitle,where){
 	    type: 'scatter'
 	  }
 	]
-
 	var layoutPark = {
 	showlegend: false,
 	xaxis: {
-	  	//autotick: false,
+	  	autotick: false,
 	  	type: 'log',
 	  	autorange: true,
-		title: xTitle 
+		title: xTitle,
+		titlefont: {
+		  family: 'Courier New, monospace',
+		  size: 18,
+		  color: '#7f7f7f'
+		}
 		},
 	yaxis:{
 		type: 'log',
 		autorange: true,
-		title: yTitle
+		title: yTitle,
+		titlefont: {
+		  family: 'Courier New, monospace',
+		  size: 18,
+		  color: '#7f7f7f'
+		}
 		}
 	};
 

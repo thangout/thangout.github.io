@@ -2,37 +2,57 @@ $(function(){
 
     var w = 1000;
     var h = 600;
-    var linkDistance=350;
+    var linkDistance=50;
 
     var colors = d3.scale.category10();
 
     var dataset = {
         nodes: [
-            {name: "Song", group:1},
-            {name: "Song", group: 1},
-            {name: "Word", group: 2},
-            {name: "Tag", group:3},
+            {name: "Cannibal Corpse - Unite the Dead", group:1},
+            {name: "Job For A Cowboy - Summon The Hounds", group: 1},
+            {name: "War From a Harlots Mouth - Fighting Wars With Keyboards", group: 1},
+            {name: "August Burns Red - The Truth Of A Liar", group: 1},
+            {name: "In Fear and Faith - Live Love Die", group: 1},
+            {name: "Finch - Post Script", group: 1},
+            {name: "Amber Pacific - Poetically Pathetic", group: 1},
+            {name: "Anarbor - The Brightest Green", group: 1},
+            {name: "Nick Jonas & The Administration - Conspiracy Theory", group: 1},
+            {name: "Taylor Swift - SuperStar", group: 1},
+            {name: "Country", group:3},
+			{name: "Brutal Death Metal", group:3},
+			{name: "death", group:2},
+			{name: "love", group:2}
         ],
         edges: [
-            {source: 0, target: 1,label:"similar, score: 0.8"},
-            {source: 1, target: 2,label:"contains, count: 4"},
-            {source: 0, target: 3,label:"tagged, score: 59"},
+            {source: 0, target: 1,label:"sim"},
+            {source: 1, target: 2,label:"sim"},
+            {source: 3, target: 2,label:"sim"},
+            {source: 3, target: 4,label:"sim"},
+            {source: 5, target: 4,label:"sim"},
+            {source: 6, target: 5,label:"sim"},
+            {source: 6, target: 7,label:"sim"},
+            {source: 8, target: 7,label:"sim"},
+            {source: 8, target: 9,label:"sim"},
+            {source: 9, target: 10,label:"tag"},
+            {source: 0, target: 11,label:"tag"},
+            {source: 9, target: 13,label:"cont"},
+            {source: 0, target: 12,label:"cont"}
             ]
     };
 
  
     var svg = d3.select(".js-forceGraph").append("svg").attr({"width":w,"height":h});
 
-    var force = d3.layout.force()
+	var force = d3.layout.force()
         .nodes(dataset.nodes)
         .links(dataset.edges)
         .size([w,h])
         .linkDistance([linkDistance])
-        .charge([-500])
-        .theta(0.1)
-        .gravity(0.05)
-        .start();
- 
+        .charge([-1000])
+        .theta(0.4)
+        .gravity(0.2)
+        .start(); 
+	
     var edges = svg.selectAll("line")
       .data(dataset.edges)
       .enter()
@@ -46,7 +66,8 @@ $(function(){
       .data(dataset.nodes)
       .enter()
       .append("circle")
-      .attr({"r":50})
+      .attr({"r":10})
+	  .attr("class", "node")
       .style("fill",function(d,i){return colors(d.group);})
       .call(force.drag)
 
@@ -55,13 +76,16 @@ $(function(){
        .data(dataset.nodes)
        .enter()
        .append("text")
-       .attr({"x":function(d){return d.x;},
-              "y":function(d){return d.y;},
+       .attr({"dx":function(d){return "10px";},
+              "dy":function(d){return "10px";},
               "class":"nodelabel",
-              "font-size":20,
-              "stroke":"black"})
+              "font-size":12,
+              "fill":"#333333"})
        .text(function(d){return d.name;});
 
+    nodelabels.attr("x", function(d) { return d.x + 15; }) 
+			  .attr("y", function(d) { return d.y + 15; });
+	   
     var edgepaths = svg.selectAll(".edgepath")
         .data(dataset.edges)
         .enter()
@@ -84,7 +108,7 @@ $(function(){
                'id':function(d,i){return 'edgelabel' + i},
                'dx':100,
                'dy':0,
-               'font-size':20,
+               'font-size':10,
                'fill':'#333'});
 
     edgelabels.append('textPath')
@@ -108,7 +132,7 @@ $(function(){
             .attr('fill', '#ccc')
             .attr('stroke','#ccc');
      
-
+	 
     force.on("tick", function(){
 
         edges.attr({"x1": function(d){return d.source.x;},
@@ -122,8 +146,8 @@ $(function(){
         });
 
 
-        nodelabels.attr("x", function(d) { return d.x - 20; }) 
-                  .attr("y", function(d) { return d.y + 3; });
+        nodelabels.attr("x", function(d) { return d.x + 10; }) 
+                  .attr("y", function(d) { return d.y + 10; });
 
         edgepaths.attr('d', function(d) { var path='M '+d.source.x+' '+d.source.y+' L '+ d.target.x +' '+d.target.y;
                                            //console.log(d)

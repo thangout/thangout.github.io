@@ -39,3 +39,11 @@
 .js-distance svg{
 	width: 100%;
 }
+
+.hoverLabels .node:hover circle {
+  fill: #000;
+}
+
+.hoverLabels .node:hover text {
+  display: inline;
+}
