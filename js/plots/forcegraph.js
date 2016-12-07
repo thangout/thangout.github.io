@@ -1,23 +1,23 @@
-var w = 1000;
+$(function(){
+
+    var w = 1000;
     var h = 600;
     var linkDistance=350;
 
     var colors = d3.scale.category10();
 
     var dataset = {
-
-    nodes: [
-    {name: "Song", group:1},
-    {name: "Song", group: 1},
-    {name: "Word", group: 2},
-    {name: "Tag", group:3},
-   
-    ],
-    edges: [
-    {source: 0, target: 1,label:"similar, score: 0.8"},
-    {source: 1, target: 2,label:"contains, count: 4"},
-    {source: 0, target: 3,label:"tagged, score: 59"},
-    ]
+        nodes: [
+            {name: "Song", group:1},
+            {name: "Song", group: 1},
+            {name: "Word", group: 2},
+            {name: "Tag", group:3},
+        ],
+        edges: [
+            {source: 0, target: 1,label:"similar, score: 0.8"},
+            {source: 1, target: 2,label:"contains, count: 4"},
+            {source: 0, target: 3,label:"tagged, score: 59"},
+            ]
     };
 
  
@@ -142,3 +142,4 @@ var w = 1000;
         });
 
     });
+})
