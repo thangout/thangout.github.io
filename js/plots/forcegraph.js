@@ -82,9 +82,6 @@ $(function(){
               "font-size":12,
               "fill":"#333333"})
        .text(function(d){return d.name;});
-
-    nodelabels.attr("x", function(d) { return d.x + 15; }) 
-			  .attr("y", function(d) { return d.y + 15; });
 	   
     var edgepaths = svg.selectAll(".edgepath")
         .data(dataset.edges)
@@ -146,8 +143,8 @@ $(function(){
         });
 
 
-        nodelabels.attr("x", function(d) { return d.x + 10; }) 
-                  .attr("y", function(d) { return d.y + 10; });
+        nodelabels.attr("x", function(d) { return d.x; }) 
+                  .attr("y", function(d) { return d.y; });
 
         edgepaths.attr('d', function(d) { var path='M '+d.source.x+' '+d.source.y+' L '+ d.target.x +' '+d.target.y;
                                            //console.log(d)

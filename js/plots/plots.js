@@ -18,6 +18,20 @@ function loadData(){
 		drawBarGraph(tags,count,'Tag','Count','js-popularTags');
 	});
 
+	var artists = {	
+		"Frank Sinatra":     62,
+		"Bruce Springsteen" :    60,
+        "The Cure"   :  58,
+        "Joan Baez"  :   54,
+        "Johnny Cash"  :   54,
+		"Neil Diamond"   :  53,
+        "Bob Dylan"  :   50,
+		"Billie Holiday"  :   50,
+		"Willie Nelson"  :  50,
+		"Dolly Parton"  :   50
+	}
+	
+	drawBarGraph(_.keys(artists),_.values(artists),'Artist','Count','js-popularArtists');
 	
 	$.getJSON("https://raw.githubusercontent.com/thangout/thangout.github.io/master/data/avgSent.json", function(json) {
 		 var unzipped = _.unzip(json); 
@@ -42,7 +56,14 @@ function loadData(){
 		 var degrees =json[1]
 		 drawLogGraph(edges,degrees,'k_in','Count','js-degreeTag');
 	});
+
+	
+	
+	
+	
+	
 }
+
 
 //draw bar plot 
 function drawBarGraph(xVal,yVal,xTitle,yTitle,where){
@@ -78,7 +99,7 @@ function drawDoubleScatterGraph(xVal,yVal,xVal2,yVal2,xTitle,yTitle,where){
 		x: xVal,
 		y: yVal,
 	    type: 'scatter',
-	    name: "Sentiment"
+	    name: "Per year average sentiment"
 	  };
 	
 
@@ -86,15 +107,15 @@ function drawDoubleScatterGraph(xVal,yVal,xVal2,yVal2,xTitle,yTitle,where){
 		x: xVal2,
 		y: yVal2,
 	    type: 'scatter',
-	    name: "Average sentiment"
+	    name: "10 Year moving average"
 	  };
 	
 
 	var layoutPark = {
-
 	showlegend: true,
+	hovermode:false,
 	xaxis: {
-	  	autotick: false,
+	  	autotick: true,
 		title: xTitle
 		},
 	yaxis:{

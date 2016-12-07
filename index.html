@@ -37,10 +37,11 @@
 				</div>
 				<div class="navbar-collapse collapse">
 					<ul class="nav navbar-nav" data-0="margin-top:20px;" data-300="margin-top:5px;">
-						<li class="active"><a href="#header">Facts</a></li>
-						<li><a href="#section-explore">Explore</a></li>
-						<li><a href="#section-tags-similarity">Tags &amp; Similarity</a></li>
-						<li><a href="#section-works">Language</a></li>
+						<li class="active"><a href="#section-facts">The Song Graph</a></li>
+						<li><a href="#section-basic">Basic Statistics</a></li>
+						<li><a href="#section-lyrics">Lyrics &amp; Tags</a></li>
+						<li><a href="#section-sentiment">Sentiment Analysis</a></li>
+						<li><a href="#section-community">Communities</a></li>
 					</ul>
 				</div><!--/.navbar-collapse -->
 			</div>
@@ -66,28 +67,29 @@
 		</section>
 		
 		<!-- services -->
-		<section id="section-explore" class="section pad-bot30 bg-white">
+		<section id="section-facts" class="section pad-bot30">
 		<div class="container"> 
-		
 			<div class="row mar-bot40">
+				<div class="section-header mar-bot40">
+							<h2 class="text-center section-heading">The song graph</h2>
+						</div>
 				<div class="col-lg-4" >
 					<div class="align-center">
-						<span class="text-bold fact-number">95224</span>
+						<span class="text-bold fact-number">99130</span>
 						<h4 class="text-bold mar-top10 mar-bot30">Songs</h4>
 						<p>
-						Songs have properties like artist, title and release year. They can have a similarity relationship
-						between each other, which holds a score indicating how similar two songs are, if at all. Around a third of
-						all songs have full information about tags, words, year, artist and title.
+						Songs have properties like <strong>artist, title, and release year</strong>. Songs are connected by <strong>similarity relationships</strong>. Around a third of
+						all songs in the database have full information about tags, words, year, artist and title.
 						</p>
 					</div>
 				</div>
 					
 				<div class="col-lg-4" >
 					<div class="align-center">
-						<span class="text-bold fact-number">106246</span>
+						<span class="text-bold fact-number">152775</span>
 						<h4 class="text-bold mar-top10 mar-bot30">Tags</h4>
 						<p>
-						Tags are user defined phrases that describe a song. These might be a genre like "rock" or descriptions
+						Tags are <strong>user defined phrases</strong>. These might be a genre like "rock" or descriptions
 						of something, the tagged songs may have in common like "sad" or "title is a full sentence".
 						</p>
 					</div>
@@ -98,45 +100,51 @@
 						<span class="text-bold fact-number">5000</span>
 						<h4 class="text-bold mar-top10 mar-bot30">Words</h4>
 						<p>
-						We are taking a network-based bag of words approach. Our database contains the 5000 most common words across
-						the songs where lyrics are available. A song is connected to a word with the "contains" relationship that also
-						holds the number of times the word occurs in that song.
+						We are taking a <strong>network-based bag-of-words</strong> approach. Our database contains the 5000 most common words across
+						the songs where lyrics are available. 
 						</p>
 					</div>
 				</div>
 			</div>	
+			<div class="row">
+				<div class="col-md-12">
+				<div class="align-center">
+					<p class="">Why are songs building a network you ask? Songs, Tags, Words, what the heck? Have a look below! 
+								This graph illustrates the basic structure of our song graph with a small example. <strong>Songs</strong> 
+								(<i class="fa fa-circle" style="color:#1f77b4;"></i>) can have directed similarity relationships
+								between each other. These relationships form a very dense graph, so that the giant connected 
+								component contains over 90% of all nodes for which we have information about similar songs.
+								As you can see, you even find a path between <em>Taylor Swift</em> and <em>Cannibal Corpse</em>.</p>
+					<p>
+					Furthermore, our graph contains user defined <strong>tags</strong> (<i class="fa fa-circle" style="color:#ff7f0e;"></i>) 
+					and lyric <strong>words</strong> (<i class="fa fa-circle" style="color:#2ca02c;"></i>). Tags are added to songs by users 
+					and often contain genre information. The collection of words a song is linked to forms a bag-of-words description of the 
+					lyrics. Obviously, the intermediate nodes have themselves multiple similarity, tag and word relationships, which are
+					ommitted here to keep it simple. </p>
+
+					<p><em>Drag the
+					nodes and have fun while you are preparing to dive into the world of music.</em></p>
+					<!-- <img class="tagCloud__image" src="img/graph.png" alt="" /> -->
+					</div>
+					<div class="js-forceGraph hoverLabels"></div>	
+				</div>
+			</div>
 		</div>
 		</section>
 			
-		<!-- about -->
-		<section id="section-tags-similarity" class="section appear clearfix">
+		<section id="section-basic" class="section bg-white pad-bot30">	
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12">
-					<div class="align-center">
-						<h2 class="">The song graph</h2>
-						<p class="">Why are songs building a network you ask? Songs, Tags, Words, what the heck? Have a look below! This graph illustrates the basic structure of our
-									song graph with a small example. Songs (<i class="fa fa-circle" style="color:#1f77b4;"></i>) can have directed similarity relationships
-									between each other. These relationships form a very dense graph, so that the giant connected component contains over 90% of all nodes.
-									As you can see, you even find a path between Taylor Swift and Cannibal Corpse.</p>
-						<p>
-						Furthermore, our graph contains user defined tags (<i class="fa fa-circle" style="color:#ff7f0e;"></i>) and lyric words 
-						(<i class="fa fa-circle" style="color:#2ca02c;"></i>). Tags are added to songs by users and often contain genre information. The collection of words
-						a song is linked to forms a bag-of-words description of the lyrics. Obviously, the intermediate nodes have themselves multiple similarity, tag and word relationships, which are ommitted here to keep it simple. Drag the
-						nodes and have fun while you are preparing to dive into the world of music.</p>
-
-						<!-- <img class="tagCloud__image" src="img/graph.png" alt="" /> -->
+						<div class="section-header mar-bot40">
+							<h2 class="text-center section-heading">Network statistics</h2>
 						</div>
-						<div class="js-forceGraph hoverLabels"></div>	
-					</div>
-					<div class="col-md-12">
-						<h2 class="text-center">The Tags &amp; Similarity graphs</h2>
 						<div class="row">
 							<div class="col-md-6">
 								<div class="align-center">
 									<h3>Degree distribution of song similarity</h3>
-									<p>This is the degree distribution of both incoming and outgoing similarity relationships for all nodes.
-									This network does not seem to scale freely as the maximum degree seems to have an upper bound.</p>
+									<p>This is the degree distribution of both incoming and outgoing similarity relationships for all song nodes.
+									This network will not scale freely as the maximum degree seems to have an upper bound.</p>
 									<div id="js-degreeDistribution"></div>	
 								</div>
 							</div>	
@@ -168,20 +176,30 @@
 						<!-- <p class="align-center">Looking at the year distribution graph the most songs </p> -->
 						<div id="js-popularTags"><!-- Graph is here --></div>
 					</div>
+					<div class="col-md-12">
+						<div class="align-center">
+							<h2 style="padding-top: 40px;">10 artists with most songs</h2>
+							<p>Here we can see the artists that have the most songs, this can be both seen as an indicator of popularity and
+							productiveness of an artist</p>
+						</div>
+						<!-- <p class="align-center">Looking at the year distribution graph the most songs </p> -->
+						<div id="js-popularArtists"><!-- Graph is here --></div>
+					</div>
+					
 				</div>
 			</div>
 		</section>
 		<!-- /about -->
 
 		<!-- word clouds -->
-		<section id="section-explore" class="section pad-bot30 bg-white">
+		<section id="section-lyrics" class="section pad-bot30 bg-white">
 			<div class="container"> 
 				<div class="row">
 					<div class="col-md-12">
 						<div class="section-header">
-							<h2 class="text-center section-heading">Lets have fun with lyrics</h2>
+							<h2 class="text-center section-heading">Lyrics and Tags</h2>
 						</div>
-						<div class="align-center">
+						<div class="align-center mar-bot40">
 							<p>One of the great features of the dataset is lyrics information available as bags of words. They allow us to find characteristic
 							words for selected tags using TF-IDF scores. Below you find some wordclouds highlighting the words with the highest scores among
 							all songs that are tagged by a particular tag.</p>
@@ -225,38 +243,64 @@
 		</section> -->
 		
 		<!-- section works -->
-		<section id="section-works" class="section appear clearfix">
+		<section id="section-sentiment" class="section appear clearfix">
 			<div class="container">
 					
 
 				<div class="row mar-bot40">
 					<div class="col-md-offset-3 col-md-6">
 						<div class="section-header">
-							<h2 class="section-heading animated" data-animation="bounceInUp">Sentiment per years</h2>
-							<p>Investigation of the average sentiment of lyrics per year from 1926 to 2010</p>
+							<h2 class="section-heading animated" data-animation="bounceInUp">Sentiment analysis</h2>
 						</div>
+						<p>Investigation of the average sentiment of lyrics per year from 1926 to 2010</p>
 					</div>
 					<div class="col-md-12">
 						<div id="js-yearSentiment"></div>
 					</div>
+					<div class="col-md-12 mar-top20">
+						<p>This graph shows the average sentiment per year based on the lyrics of all songs released
+						in a year. The high fluctuations before 1960 are due to the comparatively small amount of 
+						available data in these years which results in a high standard deviation (remember the <a href="#section-basic">year distribution</a>). Can you see the 
+						peak around 1968? We think the hippies are to blame. These days music seems to have become 
+						more negative than in the earlier days. This might, however, be a false conclusion as we are
+						probably only considering the music that remained known and popular until today, which introduces a bias.</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<p>Click <a  href="img/sentiment.jpg">here</a> to see the top 100 tags ordered by average sentiment. It provides some
+						insights into the negativity of certain music genres. For most of the scale though, it is not immediately obvious why
+						some tags are more positive than others.</p>
+					</div>
 				</div>
 			</div>
+			
+			
 		</section>
 
 		<!-- Cool graph distance -->
-		<section id="section-explore" class="section pad-bot30 bg-white">
+		<section id="section-community" class="section pad-bot30 bg-white">
 			<div class="container"> 
 				<div class="row">
 					<div class="col-md-12">
 						<div class="section-header">
-							<h2 class="text-center section-heading">Cool distance graph</h2>
+							<h2 class="text-center section-heading">Tag communities</h2>
 						</div>
 						<div class="align-center">
-							<p>### Comments on the graph here####</p>
+							<p>Welcome to the great finale. Here we see a graph of tags. Two tags are connected when they share enough Songs 
+							(the two sets of associated songs have a Jaccard index of more than 0.1). The coloring was obtained by running 
+							the Louvain community detection algorithm. See how similar tags end up in the same community. In a way, these can be
+							seen as areas of music which split up into sub-genres and merge into other areas. 
+							</p>
 						</div>
 					</div>	
 					<div class="col-md-12">
 						<div class="js-distance"></div>	
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12 mar-top40 text-center">
+						<h3>That's it! Thanks for your interest in our project and stay curious!</h3>
 					</div>
 				</div>
 			</div>

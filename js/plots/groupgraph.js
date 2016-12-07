@@ -1,6 +1,6 @@
 //Constants for the SVG
-var width = 960,
-    height = 700;
+var width = 1000,
+    height = 1000;
 
 //Set up the colour scale
 var color = d3.scale.category20();
@@ -74,14 +74,14 @@ d3.json("https://raw.githubusercontent.com/thangout/thangout.github.io/master/da
 
 	    //Changed
 	    
-	    d3.selectAll("circle").attr("cx", function (d) {
+	    svg.selectAll("circle").attr("cx", function (d) {
 	        return d.x;
 	    })
 	        .attr("cy", function (d) {
 	        return d.y;
 	    });
 
-	    d3.selectAll("text").attr("x", function (d) {
+	    svg.selectAll("text").attr("x", function (d) {
 	        return d.x;
 	    })
 	        .attr("y", function (d) {
