@@ -42,6 +42,7 @@
 						<li><a href="#section-lyrics">Lyrics &amp; Tags</a></li>
 						<li><a href="#section-sentiment">Sentiment Analysis</a></li>
 						<li><a href="#section-community">Communities</a></li>
+						<li><a href="#section-explain">Data &amp; Code</a></li>
 					</ul>
 				</div><!--/.navbar-collapse -->
 			</div>
@@ -163,7 +164,8 @@
 						<h2 class="align-center" style="padding-top: 40px" >Year distribution of the songs</h2>
 						<p class="align-center">Looking at the year distribution graph we find that most of the songs are from the 
 												21st century with decreasing amounts the older the songs are. The observed years range
-												from 1926 to 2011 with 2007 being the year with most songs.</p>
+												from 1926 to 2010 with 2007 being the year with most songs. We are thus dealing with
+												mostly recent music and some old and very old pieces.</p>
 						<div id="js-yearDistribution"><!-- Graph is here --></div>
 						<!-- <img class="tagCloud__image" src="img/year_distribution.png" alt="" /> -->
 					</div>
@@ -248,26 +250,33 @@
 					
 
 				<div class="row mar-bot40">
-					<div class="col-md-offset-3 col-md-6">
+					<div class="col-md-12 mar-bot30">
 						<div class="section-header">
 							<h2 class="section-heading animated" data-animation="bounceInUp">Sentiment analysis</h2>
 						</div>
-						<p>Investigation of the average sentiment of lyrics per year from 1926 to 2010</p>
+						<h4>Sentiment over the years</h4>
+						<p>A first step to understand natural language is to determine how positive or negative a statement is (sentiment).
+						Here we investigate the average sentiment of lyrics per year from 1926 to 2010. The sentiment score can be seen as
+						a happiness score, with high values for positive language.</p>
 					</div>
 					<div class="col-md-12">
 						<div id="js-yearSentiment"></div>
 					</div>
-					<div class="col-md-12 mar-top20">
+					<div class="col-md-12 mar-top40">
 						<p>This graph shows the average sentiment per year based on the lyrics of all songs released
 						in a year. The high fluctuations before 1960 are due to the comparatively small amount of 
 						available data in these years which results in a high standard deviation (remember the <a href="#section-basic">year distribution</a>). Can you see the 
-						peak around 1968? We think the hippies are to blame. These days music seems to have become 
+						peak around 1968? We think the hippies are to blame. Also, it may be a coincidence due to the high uncertainty, but
+						the global maximum lies just at the end of WWII. 
+						</p>
+						<p>These days music seems to have become 
 						more negative than in the earlier days. This might, however, be a false conclusion as we are
 						probably only considering the music that remained known and popular until today, which introduces a bias.</p>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-md-12">
+						<h4>Sentiment for different tags</h4>
 						<p>Click <a  href="img/sentiment.jpg">here</a> to see the top 100 tags ordered by average sentiment. It provides some
 						insights into the negativity of certain music genres. For most of the scale though, it is not immediately obvious why
 						some tags are more positive than others.</p>
@@ -290,7 +299,7 @@
 							<p>Welcome to the great finale. Here we see a graph of tags. Two tags are connected when they share enough Songs 
 							(the two sets of associated songs have a Jaccard index of more than 0.1). The coloring was obtained by running 
 							the Louvain community detection algorithm. See how similar tags end up in the same community. In a way, these can be
-							seen as areas of music which split up into sub-genres and merge into other areas. 
+							seen as areas of music which split up into sub-genres and merge into other areas.
 							</p>
 						</div>
 					</div>	
@@ -298,13 +307,34 @@
 						<div class="js-distance"></div>	
 					</div>
 				</div>
-				<div class="row">
-					<div class="col-md-12 mar-top40 text-center">
-						<h3>That's it! Thanks for your interest in our project and stay curious!</h3>
-					</div>
-				</div>
 			</div>
 		</section>	
+		
+		<section id="section-explain" class="section pad-bot30">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 col-md-offset-3">
+				<div class="section-header">
+					<h2 class="text-center section-heading">Code and Data</h2>
+				</div>
+				<p>The <a href="http://nbviewer.jupyter.org/github/thangout/thangout.github.io/blob/master/Explainer_notebook.ipynb">explainer notebook</a>
+					provides explanation, implementation, and discussion of the applied techniques. In order to be able to run the code in Anaconda without 
+					creating the database yourself, you will need the following:</p>
+					<ul>
+					<li><a href="https://neo4j.com/download/community-edition/">Neo4j Community Edition</a>: make sure to set the config variable 
+					 "dbms.security.auth_enabled" to "false" to allow unauthorized local connections</li>
+					 <li>The ipython-cypher module ("pip install neo4jrestclient ipython-cypher")</li>
+					 <li>The <a href="https://dl.dropboxusercontent.com/u/49505423/default.graphdb.zip">dump</a> of our database.</li>
+					 <li>Start Neo4j, select the location of the extracted dump as database, run the notebook</li>
+					</ul>
+				</div>
+			</div>
+			<div class="row text-center mar-top40">
+				<h4>That's all, folks!</h4>
+			</div>
+		</div>
+		
+		</section>
 
 		<!--
 		<section id="parallax2" class="section parallax" data-stellar-background-ratio="0.5">	
