@@ -22,9 +22,21 @@ function loadData(){
 		 var sentiment =_.values(unzipped[1])
 		 drawScatterGraph(years,sentiment,'Year','Sentiment','js-yearSentiment');
 	});
+
+	$.getJSON("https://raw.githubusercontent.com/thangout/thangout.github.io/master/data/degreeDist.json", function(json) {
+		 var edges =json[0]
+		 var degrees =json[1]
+		 drawLogGraph(edges,degrees,'k','Count','js-degreeDistribution');
+	});
+
+	$.getJSON("https://raw.githubusercontent.com/thangout/thangout.github.io/master/data/degreeDistTag.json", function(json) {
+		 var edges =json[0]
+		 var degrees =json[1]
+		 drawLogGraph(edges,degrees,'k_in','Count','js-degreeTag');
+	});
 }
 
-//draw bar plot of turbines production
+//draw bar plot 
 function drawBarGraph(xVal,yVal,xTitle,yTitle,where){
 	//Turbine production
 	d3 = Plotly.d3;
@@ -41,17 +53,17 @@ function drawBarGraph(xVal,yVal,xTitle,yTitle,where){
 	xaxis:{
 		autotick: false,
 		type: 'category',
-		title: 'Tag',
+		title: xTitle,
 		},
 	yaxis:{
-		title: 'Count'
+		title: yTitle 
 		}
 	};
 
 	Plotly.newPlot(where, data,layout, {displayModeBar: false});
 }
 
-//draw scatter plot of park Production
+//draw scatter plot 
 function drawScatterGraph(xVal,yVal,xTitle,yTitle,where){
 	var data = [{
 		x: xVal,
@@ -67,6 +79,33 @@ function drawScatterGraph(xVal,yVal,xTitle,yTitle,where){
 		title: xTitle 
 		},
 	yaxis:{
+		title: yTitle
+		}
+	};
+
+	Plotly.newPlot(where, data,layoutPark, {displayModeBar: false});
+}
+
+//draw scatter plot of park Production
+function drawLogGraph(xVal,yVal,xTitle,yTitle,where){
+	var data = [{
+		x: xVal,
+		y: yVal,
+	    type: 'scatter'
+	  }
+	]
+
+	var layoutPark = {
+	showlegend: false,
+	xaxis: {
+	  	//autotick: false,
+	  	type: 'log',
+	  	autorange: true,
+		title: xTitle 
+		},
+	yaxis:{
+		type: 'log',
+		autorange: true,
 		title: yTitle
 		}
 	};

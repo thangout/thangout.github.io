@@ -112,23 +112,41 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12">
-						<h2 class="align-center">The graph song</h2>
-						<p class="align-center">The simple graph below is an example of the relationship between each dataset.</p>
-						<ul class="align-center" style="list-style-type: none">
-							<li>Songs are similar to each other</li>
-							<li>Songs certainly have lyrics</li>
-							<li>Songs are tagged</li>
-						</ul>
+					<div class="align-center">
+						<h2 class="">The graph song</h2>
+						<p class="">The simple graph below is an example of the relationship between each dataset.</p>
+							<ul class="" style="list-style-type: none">
+								<li>Songs are similar to each other</li>
+								<li>Songs certainly have lyrics</li>
+								<li>Songs are tagged</li>
+							</ul>
+							<p>{Drag the nodes arround to have FUN!}</p>
 						<!-- <img class="tagCloud__image" src="img/graph.png" alt="" /> -->
+						</div>
 						<div class="js-forceGraph"></div>	
-
 					</div>
 					<div class="col-md-12">
 						<h2 class="text-center">Tags &amp; Similarity</h2>
-						<img class="tagCloud__image" src="img/distributions_merged.png" alt="" />
+						<div class="row">
+							<div class="col-md-6">
+								<div class="align-center">
+									<h3>Degree distribution of song similarity</h3>
+									<p>##### Small comment on it ###########</p>
+									<div id="js-degreeDistribution"></div>	
+								</div>
+							</div>	
+							<div class="col-md-6">
+								<div class="align-center">
+									<h3>Degree distribution of tags</h3>
+									<p>##### Small comment on it ###########</p>
+									<div id="js-degreeTag"></div>	
+								</div>
+							</div>	
+						</div>
+						<!-- <img class="tagCloud__image" src="img/distributions_merged.png" alt="" /> -->
 					</div>
 					<div class="col-md-12">
-						<h2 class="align-center">Year distribution of the songs</h2>
+						<h2 class="align-center" style="padding-top: 40px" >Year distribution of the songs</h2>
 						<p class="align-center">Looking at the year distribution graph the most songs are in 2007 </p>
 						<div id="js-yearDistribution"><!-- Graph is here --></div>
 						<!-- <img class="tagCloud__image" src="img/year_distribution.png" alt="" /> -->
@@ -204,7 +222,7 @@
 					<div class="col-md-offset-3 col-md-6">
 						<div class="section-header">
 							<h2 class="section-heading animated" data-animation="bounceInUp">Sentiment per years</h2>
-							<p>Investigation of the average sentiment of lyrics per year from 1928 to 2011</p>
+							<p>Investigation of the average sentiment of lyrics per year from 1926 to 2010</p>
 						</div>
 					</div>
 					<div class="col-md-12">
